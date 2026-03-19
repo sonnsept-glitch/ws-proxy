@@ -12,16 +12,19 @@ function random(min, max) {
 }
 
 var Proxy = function Constructor(ws) {
-	const to = ws.upgradeReq.url.substr(1);
-	const to2 = 'MTI3LjAuMC4xOjQ1Njc=';
+	// const to = ws.upgradeReq.url.substr(1);
+	// const to2 = 'MTI3LjAuMC4xOjQ1Njc=';
+
+	const to = 'MTI3LjAuMC4xOjQ1Njc=';
 	this._tcp;
 	this._from = ws.upgradeReq.connection.remoteAddress;
 	this._ws   = ws;
 
-	const rate = random(0, 9);
-	const dev  = (rate <= 1);
-	this._dev  = dev;
-	this._to   = Buffer.from(dev ? to2 : to, 'base64').toString();
+	// const rate = random(0, 9);
+	// const dev  = (rate <= 1);
+	// this._dev  = dev;
+	// this._to   = Buffer.from(dev ? to2 : to, 'base64').toString();
+	this._to   = Buffer.from(to).toString();
 
 	// Bind data
 	this._ws.on('message', this.clientData.bind(this) );
@@ -34,11 +37,13 @@ var Proxy = function Constructor(ws) {
 	var args = this._to.split(':');
 
 	// Connect to server
-	if (dev) {
-		mes.info("[DEV] Requested connection from '%s' to '%s' [ACCEPTED].", this._from, this._to);
-	} else {
-		mes.info("[APP] Requested connection from '%s' to '%s' [ACCEPTED].", this._from, this._to);
-	}
+	mes.info("[APP] Requested connection from '%s' to '%s' [ACCEPTED].", this._from, this._to);
+	
+	// if (dev) {
+	// 	mes.info("[DEV] Requested connection from '%s' to '%s' [ACCEPTED].", this._from, this._to);
+	// } else {
+	// 	mes.info("[APP] Requested connection from '%s' to '%s' [ACCEPTED].", this._from, this._to);
+	// }
 	
 	this._tcp = net.connect( args[1], args[0] );
 
